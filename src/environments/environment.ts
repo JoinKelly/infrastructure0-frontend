@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   loginApi: 'http://localhost:8080/api/v1/login',
-  userInfoApi: 'http://localhost:8080/api/v1/user_info'
+  userInfoApi: 'http://localhost:8080/users/user_info',
+  operateUserByAdminApi: 'http://localhost:8080/admin/users',
 };
 
 /*

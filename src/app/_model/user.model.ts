@@ -19,3 +19,13 @@ export interface Role {
 
   name: string;
 }
+
+export interface UserAddition {
+  username: string;
+
+  password: string;
+
+  fullName: string;
+
+  email: string;
+}
