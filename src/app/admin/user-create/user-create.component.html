@@ -1,0 +1,93 @@
+<div class="container mt-2">
+  <div class="row mb-2">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Create new user</h5>
+        </div>
+        <div class="card-body">
+          <form name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text" id="username"
+                class="form-control"
+                name="username"
+                [(ngModel)]="form.username"
+                required
+                #username="ngModel"/>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="username.errors && f.submitted"
+              >
+                Username is required!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password" id="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="form.password"
+                required
+                minlength="6"
+                #password="ngModel"
+              />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="password.errors && f.submitted"
+              >
+                <div *ngIf="password.errors.required">Password is required</div>
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fullName">Fullname</label>
+              <input
+                type="text"
+                class="form-control"
+                name="fullName" id="fullName"
+                [(ngModel)]="form.fullName"
+                required
+                #fullName="ngModel"/>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="fullName.errors && f.submitted"
+              >
+                FullName is required!
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email" id="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="form.email"
+                required
+                #email="ngModel"/>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="email.errors && f.submitted">
+                Email is required!
+              </div>
+            </div>
+            <button class="btn btn-primary">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

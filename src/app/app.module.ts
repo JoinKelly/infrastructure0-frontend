@@ -9,7 +9,6 @@ import {HomeComponent} from './home/home.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './_helpers/auth.guard';
-import { AdminComponent } from './admin/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,9 @@ import { AdminComponent } from './admin/admin/admin.component';
     HomeComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [AuthGuard, authInterceptorProviders],
   bootstrap: [AppComponent]
