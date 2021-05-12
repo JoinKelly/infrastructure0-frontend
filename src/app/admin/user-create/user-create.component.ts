@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../_services/user.service';
+import {UserAddition} from '../../_model/user.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-create',
@@ -14,7 +17,11 @@ export class UserCreateComponent implements OnInit {
     email: null
   };
 
-  constructor() {
+  isFailed = false;
+  errorMessage = '';
+
+  constructor(private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,6 +29,19 @@ export class UserCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
+    const userAddition: UserAddition = this.form;
+
+    this.userService.addUserByAdmin(userAddition).subscribe(
+      data => {
+        this.isFailed = false;
+        this.errorMessage = '';
+        this.router.navigateByUrl('/admin');
+      },
+      err => {
+        this.isFailed = true;
+        this.errorMessage = err.error.message;
+      }
+    );
   }
 
 }

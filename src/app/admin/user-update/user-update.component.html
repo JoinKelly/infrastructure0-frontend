@@ -1,0 +1,75 @@
+<div class="container mt-2">
+  <div class="row mb-2">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Edit user</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="isFailed">
+              Error: {{ errorMessage }}
+            </div>
+          </div>
+          <ng-container *ngIf="user$ | async as user">
+            <form name="form"
+                  (ngSubmit)="f.form.valid && onSubmit(user)"
+                  #f="ngForm"
+                  novalidate>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username" id="username"
+                  [(ngModel)]="user.username"
+                  required disabled
+                  #username="ngModel"/>
+              </div>
+
+              <div class="form-group">
+                <label for="fullName">Fullname</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="fullName" id="fullName"
+                  [(ngModel)]="user.fullName"
+                  required
+                  #fullName="ngModel"/>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="fullName.errors && f.submitted"
+                >
+                  FullName is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email" id="email"
+                  class="form-control"
+                  name="email"
+                  [(ngModel)]="user.email"
+                  required
+                  #email="ngModel"/>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="email.errors && f.submitted">
+                  Email is required!
+                </div>
+              </div>
+              <button class="btn btn-primary">
+                Update
+              </button>
+            </form>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

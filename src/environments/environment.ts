@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   loginApi: 'http://localhost:8080/api/v1/login',
   userInfoApi: 'http://localhost:8080/users/user_info',
+  findUserByIdApi: 'http://localhost:8080/users/find_user_by_id',
   operateUserByAdminApi: 'http://localhost:8080/admin/users',
 };
 

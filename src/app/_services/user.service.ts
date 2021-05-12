@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {environment} from '../../environments/environment';
-import {User, UserAddition} from '../_model/user.model';
+import {User, UserAddition, UserUpdateRequest} from '../_model/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,11 +28,15 @@ export class UserService {
     return this.http.post<User>(`${environment.operateUserByAdminApi}/add`, userAddition);
   }
 
-  updateUserByAdmin(userId: number, userAddition: UserAddition): Observable<User> {
-    return this.http.put<User>(`${environment.operateUserByAdminApi}/${userId}/update`, userAddition);
+  updateUserByAdmin(userId: number, userUpdateRequest: UserUpdateRequest): Observable<User> {
+    return this.http.put<User>(`${environment.operateUserByAdminApi}/${userId}/update`, userUpdateRequest);
   }
 
   deleteUserByAdmin(userId: number): Observable<User> {
     return this.http.delete<User>(`${environment.operateUserByAdminApi}/${userId}/delete`);
+  }
+
+  findById(userId: number): Observable<User> {
+    return this.http.get<User>(`${environment.findUserByIdApi}/${userId}`);
   }
 }

@@ -29,3 +29,10 @@ export interface UserAddition {
 
   email: string;
 }
+
+export interface UserUpdateRequest {
+
+  fullName: string;
+
+  email: string;
+}
