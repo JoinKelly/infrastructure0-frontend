@@ -25,7 +25,10 @@
             <td>{{user.fullName}}</td>
             <td>{{user.email}}</td>
             <td>{{user.createdDate}}</td>
-            <td><a class="btn btn-primary" routerLink="/admin/user-update/{{user.id}}">Edit</a></td>
+            <td>
+              <a class="btn btn-primary mr-2" routerLink="/admin/user-update/{{user.id}}">Edit</a>
+              <a class="btn btn-danger" (click)="showDeleteConfirmPopup(user, deleteConfirmPopup)">Delete</a>
+            </td>
           </tr>
         </ng-container>
 
@@ -36,3 +39,28 @@
     </div>
   </div>
 </div>
+<ng-template #deleteConfirmPopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Delete user dialog</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <ng-container *ngIf="user">
+    <div class="modal-body">
+      <p>Delele user: <b>{{user.username}}.</b>  Are you sure?</p>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isFailed">
+          Error: {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-danger" (click)="deleteUser(user.id, deleteConfirmPopup)">Delete</button>
+    </div>
+  </ng-container>
+</ng-template>
