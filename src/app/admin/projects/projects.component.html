@@ -1,0 +1,72 @@
+<div class="container mt-2">
+  <div class="row mb-2">
+    <div class="col-12">
+      <a class="btn btn-success" routerLink="/admin/project-create">Add Project</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Descrition</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Leader</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let project of projects;let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{project.title}}</td>
+            <td>{{project.description}}</td>
+            <td>{{project.startDate}}</td>
+            <td>{{project.endDate}}</td>
+            <td>
+              <ng-container *ngIf="project.leader">{{project.leader.fullName}}</ng-container>
+            </td>
+            <td>{{user.createdDate}}</td>
+            <td>
+              <a class="btn btn-primary mr-2" routerLink="/admin/project-update/{{project.id}}">Edit</a>
+              <a class="btn btn-danger" (click)="showDeleteConfirmPopup(project, deleteConfirmPopup)">Delete</a>
+            </td>
+          </tr>
+        </ng-container>
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<ng-template #deleteConfirmPopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Delete project dialog</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <ng-container *ngIf="user">
+    <div class="modal-body">
+      <p>Delele project: <b>{{project.title}}.</b>  Are you sure?</p>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isFailed">
+          Error: {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-danger" (click)="deleteProject(project.id, deleteConfirmPopup)">Delete</button>
+    </div>
+  </ng-container>
+</ng-template>

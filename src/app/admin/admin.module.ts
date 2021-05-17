@@ -7,6 +7,7 @@ import { UsersComponent } from './users/users.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { UserUpdateComponent } from './user-update/user-update.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { UserUpdateComponent } from './user-update/user-update.component';
   declarations: [
     UserCreateComponent,
     UsersComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
+    ProjectsComponent
   ]
 })
 export class AdminModule {}

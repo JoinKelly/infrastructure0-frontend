@@ -5,6 +5,7 @@ import {AuthGuard} from '../_helpers/auth.guard';
 import {UserCreateComponent} from './user-create/user-create.component';
 import {UsersComponent} from './users/users.component';
 import {UserUpdateComponent} from './user-update/user-update.component';
+import {ProjectsComponent} from './projects/projects.component';
 
 const adminRoutes: Routes = [
   {
@@ -20,6 +21,11 @@ const adminRoutes: Routes = [
   {
     path: '',
     component: UsersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'projects',
+    component: ProjectsComponent,
     canActivate: [AuthGuard]
   }
 ];
