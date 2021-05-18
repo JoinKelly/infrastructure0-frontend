@@ -1,0 +1,102 @@
+<div class="container mt-2">
+  <div class="row mb-2">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Update project</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="isFailed">
+              Error: {{ errorMessage }}
+            </div>
+          </div>
+          <ng-container *ngIf="form.id">
+            <form name="form"
+                  (ngSubmit)="f.form.valid && onSubmit(form.id)"
+                  #f="ngForm"
+                  novalidate>
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input
+                  type="text" id="title"
+                  class="form-control"
+                  name="title"
+                  [(ngModel)]="form.title"
+                  required
+                  #title="ngModel"/>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="title.errors && f.submitted">
+                  Title is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control"
+                          name="description" id="description"
+                          [(ngModel)]="form.description"
+                          required
+                          #description="ngModel"></textarea>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="description.errors && f.submitted">
+                  <div *ngIf="description.errors">Description is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input
+                  type="date" id="startDate"
+                  class="form-control"
+                  name="startDate" #date
+                  [(ngModel)]="form.startDate"
+                  required
+                  #startDate="ngModel"/>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="startDate.errors && f.submitted">
+                  StartDate is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input
+                  type="date" id="endDate"
+                  class="form-control"
+                  name="endDate"
+                  [(ngModel)]="form.endDate"
+                  required
+                  #endDate="ngModel"/>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="endDate.errors && f.submitted">
+                  EndDate is required!
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="leaderId">Leader</label>
+                <select id="leaderId" name="leaderId" #leaderId="ngModel"
+                        [(ngModel)]="form.leaderId" class="form-control">
+                  <ng-container *ngFor="let user of users;let i = index">
+                    <option value="{{user.id}}">{{user.fullName}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <button class="btn btn-primary">
+                Update
+              </button>
+            </form>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

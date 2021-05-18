@@ -8,7 +8,11 @@ export interface Project {
 
   startDate: Date;
 
+  startDateStr?: string;
+
   endDate: Date;
+
+  endDateStr?: string;
 
   createdDate: Date;
 

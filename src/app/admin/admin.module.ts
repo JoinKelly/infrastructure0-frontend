@@ -8,6 +8,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProjectCreateComponent } from './project-create/project-create.component';
+import { ProjectUpdateComponent } from './project-update/project-update.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { ProjectsComponent } from './projects/projects.component';
     UserCreateComponent,
     UsersComponent,
     UserUpdateComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ProjectCreateComponent,
+    ProjectUpdateComponent
   ]
 })
 export class AdminModule {}

@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './_helpers/auth.guard';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [AuthGuard, authInterceptorProviders, NgbActiveModal],
+  providers: [AuthGuard, authInterceptorProviders, NgbActiveModal, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

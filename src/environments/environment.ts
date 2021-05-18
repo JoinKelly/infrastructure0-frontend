@@ -8,7 +8,9 @@ export const environment = {
   userInfoApi: 'http://localhost:8080/users/user_info',
   findUserByIdApi: 'http://localhost:8080/users/find_user_by_id',
   operateUserByAdminApi: 'http://localhost:8080/admin/users',
-  operateProjectByAdminApi: 'http://localhost:8080/admin/projects'
+  operateProjectByAdminApi: 'http://localhost:8080/admin/projects',
+  findProjectByIdApi: 'http://localhost:8080/projects/find_by_id',
+
 };
 
 /*

@@ -28,6 +28,6 @@ export class ProjectService {
   }
 
   findById(projectId: number): Observable<Project> {
-    return this.http.get<Project>(`${environment.operateProjectByAdminApi}/${projectId}`);
+    return this.http.get<Project>(`${environment.findProjectByIdApi}/${projectId}`);
   }
 }

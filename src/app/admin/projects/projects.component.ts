@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../_model/user.model';
 import {Project} from '../../_model/project.model';
 import {ProjectService} from '../../_services/project.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-projects',
@@ -17,7 +17,8 @@ export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
 
   constructor(private projectService: ProjectService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private datePipe: DatePipe) { }
 
   ngOnInit(): void {
 
@@ -25,6 +26,10 @@ export class ProjectsComponent implements OnInit {
       data => {
         console.log(data);
         this.projects = data;
+        this.projects.forEach((value, index) => {
+          value.startDateStr = this.datePipe.transform(value.startDate, 'yyyy-MM-dd') as string;
+          value.endDateStr = this.datePipe.transform(value.endDate, 'yyyy-MM-dd') as string;
+        })
       },
       err => {
       }

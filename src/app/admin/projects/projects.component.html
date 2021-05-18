@@ -11,7 +11,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Title</th>
-          <th scope="col">Descrition</th>
+          <th scope="col">Description</th>
           <th scope="col">Start Date</th>
           <th scope="col">End Date</th>
           <th scope="col">Leader</th>
@@ -25,12 +25,12 @@
             <th scope="row">{{i + 1}}</th>
             <td>{{project.title}}</td>
             <td>{{project.description}}</td>
-            <td>{{project.startDate}}</td>
-            <td>{{project.endDate}}</td>
+            <td>{{project.startDateStr}}</td>
+            <td>{{project.endDateStr}}</td>
             <td>
               <ng-container *ngIf="project.leader">{{project.leader.fullName}}</ng-container>
             </td>
-            <td>{{user.createdDate}}</td>
+            <td>{{project.createdDate}}</td>
             <td>
               <a class="btn btn-primary mr-2" routerLink="/admin/project-update/{{project.id}}">Edit</a>
               <a class="btn btn-danger" (click)="showDeleteConfirmPopup(project, deleteConfirmPopup)">Delete</a>
@@ -52,9 +52,9 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <ng-container *ngIf="user">
+  <ng-container *ngIf="project">
     <div class="modal-body">
-      <p>Delele project: <b>{{project.title}}.</b>  Are you sure?</p>
+      <p>Delete project: <b>{{project.title}}.</b>  Are you sure?</p>
       <div class="form-group">
         <div
           class="alert alert-danger"

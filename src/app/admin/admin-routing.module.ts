@@ -6,6 +6,8 @@ import {UserCreateComponent} from './user-create/user-create.component';
 import {UsersComponent} from './users/users.component';
 import {UserUpdateComponent} from './user-update/user-update.component';
 import {ProjectsComponent} from './projects/projects.component';
+import {ProjectCreateComponent} from './project-create/project-create.component';
+import {ProjectUpdateComponent} from './project-update/project-update.component';
 
 const adminRoutes: Routes = [
   {
@@ -27,7 +29,17 @@ const adminRoutes: Routes = [
     path: 'projects',
     component: ProjectsComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: 'project-create',
+    component: ProjectCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'project-update/:id',
+    component: ProjectUpdateComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
