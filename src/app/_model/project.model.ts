@@ -32,3 +32,13 @@ export interface ProjectCreateRequest {
 
   leaderId: Number;
 }
+
+export interface ProjectMember {
+  id: number;
+
+  project: Project;
+
+  user: User;
+
+  createdDate: Date;
+}

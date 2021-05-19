@@ -10,6 +10,7 @@ import { UserUpdateComponent } from './user-update/user-update.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectCreateComponent } from './project-create/project-create.component';
 import { ProjectUpdateComponent } from './project-update/project-update.component';
+import { ProjectMemberComponent } from './project-member/project-member.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
     UserUpdateComponent,
     ProjectsComponent,
     ProjectCreateComponent,
-    ProjectUpdateComponent
+    ProjectUpdateComponent,
+    ProjectMemberComponent
   ]
 })
 export class AdminModule {}
