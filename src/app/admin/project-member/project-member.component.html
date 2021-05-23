@@ -24,8 +24,8 @@
             <td>{{projectMember.user.fullName}}</td>
             <td>{{projectMember.createdDate}}</td>
             <td>
-              <a class="btn btn-primary mr-2" routerLink="/admin/project-update/{{projectMember.id}}">Tasks</a>
-              <a class="btn btn-danger" (click)="projectMember(project, deleteConfirmPopup)">Delete</a>
+              <a class="btn btn-primary mr-2">Tasks</a>
+              <a class="btn btn-danger">Delete</a>
             </td>
           </tr>
         </ng-container>
@@ -39,14 +39,14 @@
 </div>
 <ng-template #deleteConfirmPopup let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Delete project dialog</h4>
+    <h4 class="modal-title">Delete project member dialog</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <ng-container *ngIf="project">
+  <ng-container *ngIf="projectMember">
     <div class="modal-body">
-      <p>Delete project: <b>{{project.title}}.</b>  Are you sure?</p>
+      <p>Delete project: <b>{{projectMember.user.fullName}}.</b>  Are you sure?</p>
       <div class="form-group">
         <div
           class="alert alert-danger"
@@ -58,7 +58,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-danger" (click)="deleteProject(project.id, deleteConfirmPopup)">Delete</button>
+      <button type="button" class="btn btn-danger">Delete</button>
     </div>
   </ng-container>
 </ng-template>
