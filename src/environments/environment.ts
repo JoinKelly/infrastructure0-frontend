@@ -10,6 +10,7 @@ export const environment = {
   operateUserByAdminApi: 'http://localhost:8080/admin/users',
   operateProjectByAdminApi: 'http://localhost:8080/admin/projects',
   findProjectByIdApi: 'http://localhost:8080/projects/find_by_id',
+  operateProjectApi: 'http://localhost:8080/projects',
 
 };
 

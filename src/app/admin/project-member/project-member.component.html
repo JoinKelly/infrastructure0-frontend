@@ -1,7 +1,39 @@
 <div class="container mt-2">
   <div class="row mb-2">
     <div class="col-12">
-      <a class="btn btn-success">Add Member</a>
+      <form name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate>
+        <div class="form-group">
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="isFailed">
+            Error: {{ errorMessage }}
+          </div>
+        </div>
+        <div class="input-group mb-3">
+
+          <input type="email" id="email"
+                 class="form-control"
+                 name="email"
+                 [(ngModel)]="form.email"
+                 required
+                 #email="ngModel"
+                 placeholder="Member's email" aria-label="Member's email"
+                 aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Add</button>
+          </div>
+        </div>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="email.errors && f.submitted">
+          Email is required!
+        </div>
+      </form>
     </div>
   </div>
   <div class="row">
@@ -46,7 +78,7 @@
   </div>
   <ng-container *ngIf="projectMember">
     <div class="modal-body">
-      <p>Delete project: <b>{{projectMember.user.fullName}}.</b>  Are you sure?</p>
+      <p>Delete project: <b>{{projectMember.user.fullName}}.</b> Are you sure?</p>
       <div class="form-group">
         <div
           class="alert alert-danger"
