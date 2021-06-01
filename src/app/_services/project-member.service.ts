@@ -19,4 +19,8 @@ export class ProjectMemberService {
   addProjectMemberByEmail(projectId: number, email: string): Observable<ProjectMember> {
     return this.http.get<ProjectMember>(`${environment.operateProjectApi}/project/` + projectId + `/add_member_by_email?email=` + email);
   }
+
+  removeProjectMember(projectId: number, userId: number): Observable<any> {
+    return this.http.get<any>(`${environment.operateProjectApi}/project/` + projectId + `/remove_member/` + userId);
+  }
 }

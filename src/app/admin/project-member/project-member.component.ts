@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {UserAddition} from '../../_model/user.model';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-project-member',
@@ -26,7 +27,8 @@ export class ProjectMemberComponent implements OnInit {
 
   constructor(private projectService: ProjectService,
               private route: ActivatedRoute,
-              private projectMemberService: ProjectMemberService) {
+              private projectMemberService: ProjectMemberService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -62,6 +64,30 @@ export class ProjectMemberComponent implements OnInit {
         }
       );
     ;
+  }
+
+  showDeleteConfirmPopup(projectMember: ProjectMember, deleteConfirmPopup: any): void {
+    this.projectMember = projectMember;
+    this.modalService.open(deleteConfirmPopup, {backdropClass: 'light-blue-backdrop'});
+  }
+
+  deleteProjectMember(id: number, projectId: number, userId: number, deleteConfirmPopup: any): void {
+    this.projectMemberService.removeProjectMember(projectId, userId).subscribe(
+      data => {
+        this.isFailed = false;
+        this.errorMessage = '';
+        this.projectMembers.forEach((item, index) => {
+          if (item.id === id) {
+            this.projectMembers.splice(index, 1);
+          }
+        });
+        this.modalService.dismissAll();
+      },
+      err => {
+        this.isFailed = true;
+        this.errorMessage = err.error.message;
+      }
+    );
   }
 
 }

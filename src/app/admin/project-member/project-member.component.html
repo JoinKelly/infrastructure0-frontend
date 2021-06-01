@@ -57,7 +57,7 @@
             <td>{{projectMember.createdDate}}</td>
             <td>
               <a class="btn btn-primary mr-2">Tasks</a>
-              <a class="btn btn-danger">Delete</a>
+              <a class="btn btn-danger" (click)="showDeleteConfirmPopup(projectMember, deleteConfirmPopup)">Delete</a>
             </td>
           </tr>
         </ng-container>
@@ -90,7 +90,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-danger" (click)="deleteProjectMember(projectMember.id, projectMember.project.id, projectMember.user.id, deleteConfirmPopup)">Delete</button>
     </div>
   </ng-container>
 </ng-template>
