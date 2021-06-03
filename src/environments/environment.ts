@@ -11,6 +11,7 @@ export const environment = {
   operateProjectByAdminApi: 'http://localhost:8080/admin/projects',
   findProjectByIdApi: 'http://localhost:8080/projects/find_by_id',
   operateProjectApi: 'http://localhost:8080/projects',
+  operateTaskApi: 'http://localhost:8080/tasks',
 
 };
 

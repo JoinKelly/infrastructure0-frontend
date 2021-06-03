@@ -1,0 +1,70 @@
+<div class="container mt-2">
+  <div class="row mb-2">
+    <div class="col-12">
+      <ng-container *ngIf="projectId">
+        <a class="btn btn-success" routerLink="/projects/tasks/{{projectId}}/task-create">Add Task</a>
+      </ng-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">Member</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let task of tasks;let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.deadLine}}</td>
+            <td>{{task.user?.fullName}}</td>
+            <td>{{task.createdDate}}</td>
+            <td>
+              <a class="btn btn-primary mr-2">Update</a>
+              <a class="btn btn-danger" (click)="showDeleteConfirmPopup(task, deleteConfirmPopup)">Delete</a>
+            </td>
+          </tr>
+        </ng-container>
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<ng-template #deleteConfirmPopup let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Delete project task dialog</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <ng-container *ngIf="task">
+    <div class="modal-body">
+      <p>Delete task: <b>{{task.title}}.</b> Are you sure?</p>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isFailed">
+          Error: {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-danger">Delete</button>
+    </div>
+  </ng-container>
+</ng-template>

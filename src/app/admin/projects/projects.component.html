@@ -33,7 +33,8 @@
             <td>{{project.createdDate}}</td>
             <td>
               <a class="btn btn-primary mr-2 mt-1" routerLink="/admin/project-update/{{project.id}}">Edit</a><br>
-              <a class="btn btn-primary mr-2 mt-1" routerLink="/admin/project-member/{{project.id}}">Members</a><br>
+              <a class="btn btn-info mr-2 mt-1" routerLink="/admin/project-member/{{project.id}}">Members</a><br>
+              <a class="btn btn-success mr-2 mt-1" routerLink="/projects/tasks/{{project.id}}">Tasks</a><br>
               <a class="btn btn-danger mt-1" (click)="showDeleteConfirmPopup(project, deleteConfirmPopup)">Delete</a>
             </td>
           </tr>
