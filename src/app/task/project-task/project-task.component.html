@@ -1,7 +1,17 @@
 <div class="container mt-2">
   <div class="row mb-2">
     <div class="col-12">
-      <ng-container *ngIf="projectId">
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isLoadFailed">
+          Error: {{ loadErrorMessage }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <ng-container *ngIf="projectId && !isLoadFailed">
         <a class="btn btn-success" routerLink="/projects/tasks/{{projectId}}/task-create">Add Task</a>
       </ng-container>
     </div>
@@ -30,7 +40,8 @@
             <td>{{task.user?.fullName}}</td>
             <td>{{task.createdDate}}</td>
             <td>
-              <a class="btn btn-primary mr-2">Update</a>
+              <a class="btn btn-primary mr-2"
+                 routerLink="/projects/tasks/{{projectId}}/{{task.id}}/task-update">Edit</a>
               <a class="btn btn-danger" (click)="showDeleteConfirmPopup(task, deleteConfirmPopup)">Delete</a>
             </td>
           </tr>
@@ -64,7 +75,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-dark" (click)="modal.close('Close click')">Close</button>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-danger" (click)="deleteTask(task.id, deleteConfirmPopup)">Delete</button>
     </div>
   </ng-container>
 </ng-template>

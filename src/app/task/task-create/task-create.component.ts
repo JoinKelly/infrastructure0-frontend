@@ -59,17 +59,19 @@ export class TaskCreateComponent implements OnInit {
 
     const taskCreateRequest: TaskCreateRequest = this.form;
 
-    this.taskService.addTask(taskCreateRequest).subscribe(
-      data => {
-        this.isFailed = false;
-        this.errorMessage = '';
-        this.router.navigateByUrl('projects/tasks/' + this.projectId);
-      },
-      err => {
-        this.isFailed = true;
-        this.errorMessage = err.error.message;
-      }
-    );
+    if (this.projectId) {
+      this.taskService.addTask(this.projectId, taskCreateRequest).subscribe(
+        data => {
+          this.isFailed = false;
+          this.errorMessage = '';
+          this.router.navigateByUrl('projects/tasks/' + this.projectId);
+        },
+        err => {
+          this.isFailed = true;
+          this.errorMessage = err.error.message;
+        }
+      );
+    }
   }
 
 }

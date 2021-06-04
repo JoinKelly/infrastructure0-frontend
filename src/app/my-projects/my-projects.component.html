@@ -1,0 +1,42 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Leader</th>
+          <th scope="col">Created Date</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let project of projects;let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{project.title}}</td>
+            <td>{{project.description}}</td>
+            <td>{{project.startDateStr}}</td>
+            <td>{{project.endDateStr}}</td>
+            <td>
+              <ng-container *ngIf="project.leader">{{project.leader.fullName}}</ng-container>
+            </td>
+            <td>{{project.createdDate}}</td>
+            <td>
+              <a class="btn btn-info mr-2 mt-1" routerLink="/admin/project-member/{{project.id}}">Members</a><br>
+              <a class="btn btn-success mr-2 mt-1" routerLink="/projects/tasks/{{project.id}}">Tasks</a><br>
+            </td>
+          </tr>
+        </ng-container>
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

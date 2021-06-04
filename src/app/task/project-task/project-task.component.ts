@@ -14,8 +14,11 @@ import {TaskService} from '../../_services/task.service';
 })
 export class ProjectTaskComponent implements OnInit {
 
-  projectId = -1;
   isFailed = false;
+  loadErrorMessage = '';
+
+  projectId = -1;
+  isLoadFailed = false;
   errorMessage = '';
   task: Task | null | undefined;
   tasks: Task[] = [];
@@ -36,8 +39,8 @@ export class ProjectTaskComponent implements OnInit {
         this.tasks = data;
       },
       err => {
-        this.isFailed = true;
-        this.errorMessage = err.error.message;
+        this.isLoadFailed = true;
+        this.loadErrorMessage = err.error.message;
       }
     );
   }
@@ -45,6 +48,27 @@ export class ProjectTaskComponent implements OnInit {
   showDeleteConfirmPopup(task: Task, deleteConfirmPopup: any): void {
     this.task = task;
     this.modalService.open(deleteConfirmPopup, {backdropClass: 'light-blue-backdrop'});
+  }
+
+  deleteTask(id: number, deleteConfirmPopup: any): void {
+    if(this.projectId) {
+      this.taskService.deleteTask(this.projectId, id).subscribe(
+        data => {
+          this.isFailed = false;
+          this.errorMessage = '';
+          this.tasks.forEach( (item, index) => {
+            if (item.id === id){
+              this.tasks.splice(index, 1);
+            }
+          });
+          this.modalService.dismissAll();
+        },
+        err => {
+          this.isFailed = true;
+          this.errorMessage = err.error.message;
+        }
+      );
+    }
   }
 
 }

@@ -11,12 +11,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthGuard} from './_helpers/auth.guard';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { MyProjectsComponent } from './my-projects/my-projects.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent],
+    HomeComponent,
+    MyProjectsComponent],
   imports: [
     BrowserModule,
     FormsModule,
