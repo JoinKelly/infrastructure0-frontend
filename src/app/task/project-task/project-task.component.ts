@@ -14,11 +14,11 @@ import {TaskService} from '../../_services/task.service';
 })
 export class ProjectTaskComponent implements OnInit {
 
-  isFailed = false;
+  isLoadFailed = false;
   loadErrorMessage = '';
 
   projectId = -1;
-  isLoadFailed = false;
+  isFailed = false;
   errorMessage = '';
   task: Task | null | undefined;
   tasks: Task[] = [];

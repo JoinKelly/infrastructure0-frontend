@@ -4,11 +4,13 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './_helpers/auth.guard';
 import {HomeComponent} from './home/home.component';
 import {MyProjectsComponent} from './my-projects/my-projects.component';
+import {MyTasksComponent} from './my-tasks/my-tasks.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'my-projects', component: MyProjectsComponent, canActivate: [AuthGuard]},
+  {path: 'my-tasks', component: MyTasksComponent, canActivate: [AuthGuard]},
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),

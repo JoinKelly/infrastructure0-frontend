@@ -32,4 +32,8 @@ export class TaskService {
   deleteTask(projectId: number, id: number): Observable<any> {
     return this.http.delete<any>(`${environment.operateTaskApi}/` + projectId + `/` + id + `/delete`);
   }
+
+  findAllMyTasks(): Observable<Task[]> {
+  return this.http.get<Task[]>(`${environment.operateTaskApi}/my_tasks`);
+  }
 }

@@ -12,13 +12,15 @@ import {AuthGuard} from './_helpers/auth.guard';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
+import { MyTasksComponent } from './my-tasks/my-tasks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    MyProjectsComponent],
+    MyProjectsComponent,
+    MyTasksComponent],
   imports: [
     BrowserModule,
     FormsModule,
