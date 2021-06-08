@@ -40,7 +40,7 @@
             <td>{{task.user?.fullName}}</td>
             <td>{{task.createdDate}}</td>
             <td>
-              <a class="btn btn-primary mr-2"
+              <a class="btn btn-primary mr-2 mb-2"
                  routerLink="/projects/tasks/{{projectId}}/{{task.id}}/task-update">Edit</a>
               <a class="btn btn-danger" (click)="showDeleteConfirmPopup(task, deleteConfirmPopup)">Delete</a>
             </td>

@@ -8,6 +8,12 @@
           *ngIf="isLoadFailed">
           Error: {{ loadErrorMessage }}
         </div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          *ngIf="isSuccess">
+          Update task successfully.
+        </div>
       </div>
     </div>
   </div>
@@ -33,7 +39,18 @@
             <td>{{task.description}}</td>
             <td>{{task.deadLine}}</td>
             <td>{{task.project.title}}</td>
-            <td>{{task.state}}</td>
+            <td>
+              <select class="form-control" #state (change)="updateState(task.id, state.value)">
+                <option value="PROGRESS" *ngIf="task.state == 'PROGRESS'" selected>PROGRESS</option>
+                <option value="PROGRESS" *ngIf="task.state != 'PROGRESS'">PROGRESS</option>
+                <option value="OPEN" *ngIf="task.state == 'OPEN'" selected>OPEN</option>
+                <option value="OPEN" *ngIf="task.state != 'OPEN'">OPEN</option>
+                <option value="COMPLETE" *ngIf="task.state == 'COMPLETE'" selected>COMPLETE</option>
+                <option value="COMPLETE" *ngIf="task.state != 'COMPLETE'">COMPLETE</option>
+                <option value="PENDING" *ngIf="task.state == 'PENDING'" selected>PENDING</option>
+                <option value="PENDING" *ngIf="task.state != 'PENDING'">PENDING</option>
+              </select>
+            </td>
             <td>{{task.createdDate}}</td>
           </tr>
         </ng-container>

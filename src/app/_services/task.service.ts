@@ -36,4 +36,8 @@ export class TaskService {
   findAllMyTasks(): Observable<Task[]> {
   return this.http.get<Task[]>(`${environment.operateTaskApi}/my_tasks`);
   }
+
+  updateState(id: number, state: string): Observable<Task> {
+    return this.http.put<Task>(`${environment.operateTaskApi}/` + id + `/update_state?state=` + state, {});
+  }
 }

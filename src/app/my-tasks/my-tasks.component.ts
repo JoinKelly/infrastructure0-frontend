@@ -11,6 +11,7 @@ export class MyTasksComponent implements OnInit {
 
   isLoadFailed = false;
   loadErrorMessage = '';
+  isSuccess = false;
 
   tasks: Task[] = [];
 
@@ -20,6 +21,18 @@ export class MyTasksComponent implements OnInit {
     this.taskService.findAllMyTasks().subscribe(
       data => {
         this.tasks = data;
+      },
+      err => {
+        this.isLoadFailed = true;
+        this.loadErrorMessage = err.error.message;
+      }
+    );
+  }
+
+  updateState(id: number, newValue: string) {
+    this.taskService.updateState(id, newValue).subscribe(
+      data => {
+        this.isSuccess = true;
       },
       err => {
         this.isLoadFailed = true;

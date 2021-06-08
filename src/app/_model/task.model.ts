@@ -18,6 +18,8 @@ export interface Task {
   user: User;
 
   project: Project;
+
+  state: string;
 }
 
 export interface TaskCreateRequest {
