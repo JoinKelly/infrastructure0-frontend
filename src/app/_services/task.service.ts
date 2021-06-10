@@ -21,8 +21,8 @@ export class TaskService {
     return this.http.put<Task>(`${environment.operateTaskApi}/` + projectId + `/` + id + `/update`, taskCreateRequest);
   }
 
-  findAllByProject(projectId: number): Observable<Task[]> {
-    return this.http.get<Task[]>(`${environment.operateTaskApi}/find_all_by_project/` + projectId);
+  findAllByProject(projectId: number, fetchMode: string): Observable<Task[]> {
+    return this.http.get<Task[]>(`${environment.operateTaskApi}/find_all_by_project/` + projectId + `?fetchMode=` + fetchMode);
   }
 
   findTaskById(id: number): Observable<Task> {
@@ -33,8 +33,8 @@ export class TaskService {
     return this.http.delete<any>(`${environment.operateTaskApi}/` + projectId + `/` + id + `/delete`);
   }
 
-  findAllMyTasks(): Observable<Task[]> {
-  return this.http.get<Task[]>(`${environment.operateTaskApi}/my_tasks`);
+  findAllMyTasks(fetchMode: string): Observable<Task[]> {
+  return this.http.get<Task[]>(`${environment.operateTaskApi}/my_tasks?fetchMode=` + fetchMode);
   }
 
   updateState(id: number, state: string): Observable<Task> {

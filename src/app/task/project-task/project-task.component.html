@@ -15,6 +15,21 @@
         <a class="btn btn-success" routerLink="/projects/tasks/{{projectId}}/task-create">Add Task</a>
       </ng-container>
     </div>
+    <div class="col-3 offset-9">
+      <ng-container *ngIf="projectId">
+        <div class="form-group">
+          <label for="state">Search by state: </label>
+          <select id="state" name="state" #state class="form-control" (change)="refetchTasks(state.value)">
+            <option value="ALL">All</option>
+            <option value="UN_ASSIGNED">Un assigned</option>
+            <option value="OPEN">Open</option>
+            <option value="PROGRESS">Progress</option>
+            <option value="COMPLETE">Complete</option>
+            <option value="PENDING">Pending</option>
+          </select>
+        </div>
+      </ng-container>
+    </div>
   </div>
   <div class="row">
     <div class="col-12">

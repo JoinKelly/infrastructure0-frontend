@@ -12,13 +12,14 @@ export class MyTasksComponent implements OnInit {
   isLoadFailed = false;
   loadErrorMessage = '';
   isSuccess = false;
+  fetchMode = 'ALL';
 
   tasks: Task[] = [];
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
-    this.taskService.findAllMyTasks().subscribe(
+    this.taskService.findAllMyTasks(this.fetchMode).subscribe(
       data => {
         this.tasks = data;
       },
@@ -33,6 +34,19 @@ export class MyTasksComponent implements OnInit {
     this.taskService.updateState(id, newValue).subscribe(
       data => {
         this.isSuccess = true;
+      },
+      err => {
+        this.isLoadFailed = true;
+        this.loadErrorMessage = err.error.message;
+      }
+    );
+  }
+
+  refetchTasks(value: string) {
+    this.taskService.findAllMyTasks(value).subscribe(
+      data => {
+        this.tasks = data;
+        this.isLoadFailed = false;
       },
       err => {
         this.isLoadFailed = true;

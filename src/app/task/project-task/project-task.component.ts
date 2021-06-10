@@ -16,6 +16,7 @@ export class ProjectTaskComponent implements OnInit {
 
   isLoadFailed = false;
   loadErrorMessage = '';
+  fetchMode = 'ALL';
 
   projectId = -1;
   isFailed = false;
@@ -32,7 +33,7 @@ export class ProjectTaskComponent implements OnInit {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
           this.projectId = Number(params.get('projectId'));
-          return this.taskService.findAllByProject(this.projectId);
+          return this.taskService.findAllByProject(this.projectId, this.fetchMode);
         }
       )).subscribe(
       data => {
@@ -71,4 +72,18 @@ export class ProjectTaskComponent implements OnInit {
     }
   }
 
+  refetchTasks(value: string) {
+    if(this.projectId) {
+      this.taskService.findAllByProject(this.projectId, value).subscribe(
+        data => {
+          this.isLoadFailed = false;
+          this.tasks = data;
+        },
+        err => {
+          this.isLoadFailed = true;
+          this.loadErrorMessage = err.error.message;
+        }
+      );
+    }
+  }
 }
