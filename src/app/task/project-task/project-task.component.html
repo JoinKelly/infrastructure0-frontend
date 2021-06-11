@@ -1,5 +1,5 @@
 <div class="container mt-2">
-  <div class="row mb-2">
+  <div class="row justify-content-between mb-2">
     <div class="col-12">
       <div class="form-group">
         <div
@@ -8,16 +8,23 @@
           *ngIf="isLoadFailed">
           Error: {{ loadErrorMessage }}
         </div>
+        <div
+          class="alert alert-success"
+          role="alert"
+          *ngIf="isSuccess">
+          Update task successfully.
+        </div>
       </div>
     </div>
-    <div class="col-12">
+    <div class="col-3">
       <ng-container *ngIf="projectId && !isLoadFailed">
-        <a class="btn btn-success" routerLink="/projects/tasks/{{projectId}}/task-create">Add Task</a>
+        <a class="btn btn-success" style="position: absolute; bottom: 0;" routerLink="/projects/tasks/{{projectId}}/task-create">
+          Add Task</a>
       </ng-container>
     </div>
-    <div class="col-3 offset-9">
+    <div class="col-3">
       <ng-container *ngIf="projectId">
-        <div class="form-group">
+        <div class="form-group mb-0">
           <label for="state">Search by state: </label>
           <select id="state" name="state" #state class="form-control" (change)="refetchTasks(state.value)">
             <option value="ALL">All</option>
@@ -41,6 +48,7 @@
           <th scope="col">Description</th>
           <th scope="col">Deadline</th>
           <th scope="col">Member</th>
+          <th scope="col">State</th>
           <th scope="col">Created Date</th>
           <th scope="col">Action</th>
         </tr>
@@ -53,6 +61,18 @@
             <td>{{task.description}}</td>
             <td>{{task.deadLine}}</td>
             <td>{{task.user?.fullName}}</td>
+            <td>
+              <select class="form-control" #state (change)="updateState(task.id, state.value)">
+                <option value="PROGRESS" *ngIf="task.state == 'PROGRESS'" selected>PROGRESS</option>
+                <option value="PROGRESS" *ngIf="task.state != 'PROGRESS'">PROGRESS</option>
+                <option value="OPEN" *ngIf="task.state == 'OPEN'" selected>OPEN</option>
+                <option value="OPEN" *ngIf="task.state != 'OPEN'">OPEN</option>
+                <option value="COMPLETE" *ngIf="task.state == 'COMPLETE'" selected>COMPLETE</option>
+                <option value="COMPLETE" *ngIf="task.state != 'COMPLETE'">COMPLETE</option>
+                <option value="PENDING" *ngIf="task.state == 'PENDING'" selected>PENDING</option>
+                <option value="PENDING" *ngIf="task.state != 'PENDING'">PENDING</option>
+              </select>
+            </td>
             <td>{{task.createdDate}}</td>
             <td>
               <a class="btn btn-primary mr-2 mb-2"

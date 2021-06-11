@@ -1,6 +1,6 @@
 <div class="container mt-2">
   <div class="row mb-2">
-    <div class="col-4">
+    <div class="col-4 offset-8">
       <form name="form"
             (ngSubmit)="f.form.valid && onSubmit()"
             #f="ngForm"
@@ -14,7 +14,7 @@
           </div>
         </div>
         <label for="email">Add member by email: </label>
-        <div class="input-group mb-3">
+        <div class="input-group mb-0">
 
           <input type="email" id="email"
                  class="form-control"
@@ -25,7 +25,7 @@
                  placeholder="Member's email" aria-label="Member's email"
                  aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <button class="btn btn-danger" type="submit">Add</button>
+            <button class="btn btn-success" type="submit">Add</button>
           </div>
         </div>
         <div

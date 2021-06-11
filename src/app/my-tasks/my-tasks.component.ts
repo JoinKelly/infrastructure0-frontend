@@ -34,6 +34,9 @@ export class MyTasksComponent implements OnInit {
     this.taskService.updateState(id, newValue).subscribe(
       data => {
         this.isSuccess = true;
+        if (this.fetchMode !== 'ALL') {
+          this.refetchTasks(this.fetchMode);
+        }
       },
       err => {
         this.isLoadFailed = true;
@@ -43,6 +46,7 @@ export class MyTasksComponent implements OnInit {
   }
 
   refetchTasks(value: string) {
+    this.fetchMode = value;
     this.taskService.findAllMyTasks(value).subscribe(
       data => {
         this.tasks = data;

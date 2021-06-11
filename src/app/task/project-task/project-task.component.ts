@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectCreateRequest, ProjectMember} from '../../_model/project.model';
 import {Task} from '../../_model/task.model';
-import {ProjectMemberService} from '../../_services/project-member.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, ParamMap} from '@angular/router';
@@ -16,6 +14,7 @@ export class ProjectTaskComponent implements OnInit {
 
   isLoadFailed = false;
   loadErrorMessage = '';
+  isSuccess = false;
   fetchMode = 'ALL';
 
   projectId = -1;
@@ -74,6 +73,7 @@ export class ProjectTaskComponent implements OnInit {
 
   refetchTasks(value: string) {
     if(this.projectId) {
+      this.fetchMode = value;
       this.taskService.findAllByProject(this.projectId, value).subscribe(
         data => {
           this.isLoadFailed = false;
@@ -85,5 +85,20 @@ export class ProjectTaskComponent implements OnInit {
         }
       );
     }
+  }
+
+  updateState(id: number, newValue: string) {
+    this.taskService.updateState(id, newValue).subscribe(
+      data => {
+        this.isSuccess = true;
+        if (this.fetchMode !== 'ALL') {
+          this.refetchTasks(this.fetchMode);
+        }
+      },
+      err => {
+        this.isLoadFailed = true;
+        this.loadErrorMessage = err.error.message;
+      }
+    );
   }
 }
